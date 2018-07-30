@@ -1,0 +1,20 @@
+server {
+  listen 80;
+  server_name _;
+  access_log /dev/stdout;
+  error_log /dev/stderr notice;
+
+  return 301 $REDIRECT_TARGET$request_uri;
+}
+
+server {
+  listen 81;
+  server_name _;
+  access_log /dev/stdout;
+  error_log /dev/stderr notice;
+
+  location / {
+    return 204 'This is fine.';
+    add_header Content-Type text/plain;
+  }
+}
